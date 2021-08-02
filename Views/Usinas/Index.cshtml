@@ -21,52 +21,51 @@
             </div>
         </div>
     </div>
-    <div class="row">
+    <div class="row mb-5">
         <div class="form-inline" style="margin-left:70%">
-            @Html.ActionLink("Cadastrar", "Create", null, new { @class = "btn btn-success mr-2" })            
+            @Html.ActionLink("Cadastrar", "Create", null, new { @class = "btn btn-success mr-2" })
             <input type="submit" value="Filtrar" class="btn btn-success " />
-
-
-
         </div>
     </div>
 }
-<table id ="tableID" class="table mt-5">
-    <tr>
-        <th>
-            @Html.DisplayName("Fornecedor")
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Uc)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Ativo)
-        </th>
-
-        <th>Ações</th>
-    </tr>
-
-    @foreach (var item in Model)
-    {
+<table class="table mt-5">
+    <thead>
         <tr>
-            @foreach (var itemForncedor in item.Fornecedor)
-            {
-                <td>
-                    @Html.DisplayFor(m => itemForncedor.Nome)
-                </td>
-            }
-            <td>
-                @Html.DisplayFor(modelItem => item.Uc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ativo)
-            </td>
+            <th>
+                @Html.DisplayName("Fornecedor")
+            </th>
+            <th>
+                @Html.DisplayName("UC da Usina")
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Ativo)
+            </th>
 
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
-            </td>
+            <th>Ações</th>
         </tr>
-    }
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                @foreach (var itemForncedor in item.Fornecedor)
+                {
+                    <td>
+                        @Html.DisplayFor(m => itemForncedor.Nome)
+                    </td>
+                }
+                <td>
+                    @Html.DisplayFor(modelItem => item.Uc)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Ativo)
+                </td>
 
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+                </td>
+            </tr>
+        }
+    </tbody>
 </table>
