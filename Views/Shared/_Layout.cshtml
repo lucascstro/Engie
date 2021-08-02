@@ -9,7 +9,7 @@
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/jquery-3.6.0.min.js" type="text/javascript"></script>
-    <script src="~/Scripts/" type="text/javascript"></script>
+    <script src="~/Scripts/Tabela.js" type="text/javascript"></script>
     <script src="~/Scripts/bootstrap.min.js" type="text/javascript"></script>
     <script src="~/Scripts/modernizr-2.8.3.js" type="text/javascript"></script>
     @*@Styles.Render("~/Content/css")
@@ -31,7 +31,7 @@
             <p>&copy; @DateTime.Now.Year - Engie</p>
         </footer>
     </div>
-    
+
     <script src="~/Scripts/jquery-3.6.0.min.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/Tabela.js"></script>
@@ -39,40 +39,14 @@
     <script src="~/Scripts/bootstrap.bundle.js"></script>
 
     @Scripts.Render("~/bundles/jquery")
-        @Scripts.Render("~/bundles/bootstrap")
-        @RenderSection("scripts", required: false)
-    <!--Chamada dos modais-->
-    <script type="text/javascript">
-        $(document).ready(
-            $(function () {
-                $(".edit").click(function () {
-                    var id = $(this).attr("data-id");
-                    $(".modalIndex").load("Usinas/Edit/" + id, function () {
-                        $(".modal").modal("show");
-                    })
-                });
+    @Scripts.Render("~/bundles/bootstrap")
+    @Scripts.Render("~/bundles/tabela")
+    @RenderSection("scripts", required: false)
 
-                $(".delete").click(function () {
-                    var id = $(this).attr("data-id");
-                    $(".modalIndex").load("Usinas/Delete/" + id, function () {
-                        $(".modal").modal("show");
-                    })
-                });
-
-                $(".create").click(function () {
-                    $(".modalIndex").load("Usinas/Create", function () {
-                        $(".modal").modal("show");
-                    })
-                });
-
-            })
-        );
-    </script>
-    <!--Filtros-->
     <!--Paginacao-->
     <script>
         $(document).ready(function () {
-            $('#tableBody').DataTable();
+            $("#tableID").DataTable();
         });
     </script>
 </body>

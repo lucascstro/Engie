@@ -135,7 +135,6 @@
     </Compile>
     <Compile Include="Models\Fornecedor.cs" />
     <Compile Include="Models\Usina.cs" />
-    <Compile Include="Models\ViewModel\EditarViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -279,7 +278,6 @@
     <Content Include="Scripts\popper-utils.js.map" />
     <Content Include="Views\Usinas\Create.cshtml" />
     <Content Include="Views\Usinas\Delete.cshtml" />
-    <Content Include="Views\Usinas\Details.cshtml" />
     <Content Include="Views\Usinas\Edit.cshtml" />
     <Content Include="Views\Usinas\Index.cshtml" />
   </ItemGroup>

@@ -4,26 +4,16 @@
     ViewBag.Title = "Create";
 }
 
-<h2>Create</h2>
-
-
-@using (Html.BeginForm()) 
+<h5 class="mt-5">Cadastro de usinas</h5>
+<hr />
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
-    <div class="form-horizontal">
-        <h4>Usina</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Uc, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Uc, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Uc, "", new { @class = "text-danger" })
-            </div>
-        </div>
 
-        <div class="form-group">
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.ValidationMessage("CustomError", new { @class = "text-success" })
+        <div class="form-inline form-group ">
             @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
@@ -32,26 +22,30 @@
                 </div>
             </div>
         </div>
-
-        <div class="form-group">
-            @Html.LabelFor(model => model.IdFornecedor, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="form-inline form-group">
+            @Html.Label("Forrnecedor*", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.IdFornecedor, new SelectList(Model.Fornecedor, "Id","Nome"), "Selecione", new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.IdFornecedor, "", new { @class = "text-danger" })
+                @Html.DropDownListFor(model => model.IdFornecedor, new SelectList(Model.Fornecedor, "Id", "Nome"), "Selecione", new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.IdFornecedor, "", new { @class = "msg text-danger" })
             </div>
         </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Create" class="btn btn-default" />
+        <div class="form-inline form-group">
+            @Html.Label("Uc da Usina*", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Uc, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Uc, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        <div class="form-group">                     
+            <div class="row">
+                <div class="form-inline" style="margin-left:70%">
+                    <input type="submit" value="Salvar" class="btn btn-success mr-2 " />                 
+                    @Html.ActionLink("Fechar", "Index",null, new { @class = "btn btn-danger mr-2" })
+                </div>
             </div>
         </div>
     </div>
 }
-
-<div>
-    @Html.ActionLink("Back to List", "Index")
-</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")

@@ -4,45 +4,46 @@
     ViewBag.Title = "Delete";
 }
 
-<h2>Delete</h2>
+<h5 class="mt-5">Exclusão de Usina</h5>
+<hr />
+<div>   
+    <div class="form-horizontal">
 
-<h3>Are you sure you want to delete this?</h3>
-<div>
-    <h4>Usina</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.Uc)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Uc)
-        </dd>
-
-        <dt>
+        <div class="form-inline form-group ">
             @Html.DisplayNameFor(model => model.Ativo)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Ativo)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.IdFornecedor)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.IdFornecedor)
-        </dd>
-
-    </dl>
-
-    @using (Html.BeginForm()) {
-        @Html.AntiForgeryToken()
-
-        <div class="form-actions no-color">
-            <input type="submit" value="Delete" class="btn btn-default" /> |
-            @Html.ActionLink("Back to List", "Index")
+            <div class="col-md-10">
+                <div class="checkbox">
+                    @Html.DisplayFor(model => model.Ativo)
+                </div>
+            </div>
         </div>
-    }
+        <div class="form-inline form-group">
+            @Html.DisplayName("Fornecedor*")
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.IdFornecedor)
+            </div>
+        </div>
+        <div class="form-inline form-group">
+            @Html.DisplayName("Uc da usina*")
+            <div class="col-md-10">
+                @Html.DisplayFor(model => model.Uc)
+            </div>
+        </div>
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+            </div>
+            <div>
+            </div>
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+                <div class="row">
+                    <div class="form-inline" style="margin-left:70%">
+                        <input type="submit" value="Deletar" class="btn btn-success mr-2" />
+                        @Html.ActionLink("Fechar", "Index", null, new { @class = "btn btn-danger mr-2" })
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
 </div>

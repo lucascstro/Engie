@@ -3,14 +3,39 @@
 @{
     ViewBag.Title = "Index";
 }
+<h5 class="mt-5">Listagem de usinas de Geração Distribuída</h5>
+<hr />
+@using (Html.BeginForm("Index", "Usinas", FormMethod.Get))
+{
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-inline">
+                <p class="mt-2 mr-1">Fornecedor</p>
+                @Html.DropDownList("fornecedorDrop", null, null, new { @class = "form-control" })
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-inline">
+                <p class="mt-2 mr-1">Ativo</p>
+                @Html.DropDownList("AtivoDrop", null, null, new { @class = "form-control" })
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="form-inline" style="margin-left:70%">
+            @Html.ActionLink("Cadastrar", "Create", null, new { @class = "btn btn-success mr-2" })            
+            <input type="submit" value="Filtrar" class="btn btn-success " />
 
-<h2>Index</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
+
+        </div>
+    </div>
+}
+<table id ="tableID" class="table mt-5">
     <tr>
+        <th>
+            @Html.DisplayName("Fornecedor")
+        </th>
         <th>
             @Html.DisplayNameFor(model => model.Uc)
         </th>
@@ -18,22 +43,12 @@
             @Html.DisplayNameFor(model => model.Ativo)
         </th>
 
-        <th>
-            @Html.DisplayName("Fornecedor")
-        </th>
-
-        <th></th>
+        <th>Ações</th>
     </tr>
 
     @foreach (var item in Model)
     {
         <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Uc)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Ativo)
-            </td>
             @foreach (var itemForncedor in item.Fornecedor)
             {
                 <td>
@@ -41,8 +56,14 @@
                 </td>
             }
             <td>
+                @Html.DisplayFor(modelItem => item.Uc)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Ativo)
+            </td>
+
+            <td>
                 @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
-                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
