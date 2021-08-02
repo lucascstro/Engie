@@ -8,7 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Engie.Data;
 using Engie.Models;
-using Engie.Models.ViewModels;
+using Engie.Models.ViewModel;
 
 namespace Engie.Controllers
 {
@@ -19,7 +19,25 @@ namespace Engie.Controllers
         // GET: Usinas
         public ActionResult Index()
         {
-            return View(db.Usina.ToList());
+            Usina usina = new Usina();
+            var todasUsinas = usina.PegarTodos();
+            var fornecedor = db.Fornecedor.ToList();
+
+            List<Usina> UsinaCompleta = new List<Usina>();
+            List<Fornecedor> fornecedores = new List<Fornecedor>();
+            foreach (var item in todasUsinas)
+            {
+                foreach (var item2 in fornecedor)
+                {
+                    if (item.IdFornecedor == item2.Id)
+                    {
+                        var retFornecedor = fornecedor.Where(x=>x.Id==item.IdFornecedor).ToList();
+                        UsinaCompleta.Add(new Usina { Id = item.Id, Ativo = item.Ativo, Uc = item.Uc, IdFornecedor = item.IdFornecedor, Fornecedor = retFornecedor});
+                    }
+                }
+            }
+
+            return View(UsinaCompleta);
         }
 
         // GET: Usinas/Details/5
@@ -40,9 +58,11 @@ namespace Engie.Controllers
         // GET: Usinas/Create
         public ActionResult Create()
         {
+            Fornecedor fornecedor = new Fornecedor();
             Usina usina = new Usina();
-            usina.Ativo = true;
-            ViewBag.Fornecedor = db.Fornecedor;
+            usina.Fornecedor = usina.TodosFornecedores();
+            ViewData["Fornecedor"] = db.Fornecedor;
+
             return View(usina);
         }
 
@@ -59,6 +79,7 @@ namespace Engie.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
+
             return View(usina);
         }
 
@@ -69,13 +90,20 @@ namespace Engie.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Usina usina = db.Usina.Find(id);
-            if (usina == null)
+            Usina usinaID = db.Usina.Find(id);            
+            var retFornecedor = db.Fornecedor.ToList().Where(x => x.Id == id).ToList();
+            usinaID.Fornecedor = retFornecedor;           
+
+            ViewData["Fornecedor"] = new Fornecedor().PegarTodos();
+
+            if (usinaID == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Fornecedor = db.Fornecedor;
-            return View(usina);
+            foreach (var item in retFornecedor) {
+                ViewData["FornecedorId"] = item.Nome;
+            }
+            return View(usinaID);
         }
 
         // POST: Usinas/Edit/5

@@ -17,7 +17,7 @@ namespace Engie.Data
 
         //DBset Entidade Fornecedor
         public DbSet<Fornecedor> Fornecedor { get; set; }
-
+        
         //metodo para verificar necessidade de popular tabela Fornecedores
         public void VerificaFornecedor()
         {
@@ -43,6 +43,6 @@ namespace Engie.Data
                 Console.WriteLine("Erro ao inserir os fornecedores! - Erro:" + e.Message.ToString()); ;
             }
         }
+     
     }
-
 }
