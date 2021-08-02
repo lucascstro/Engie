@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using Engie.Data;
 using Engie.Models;
+using Engie.Models.ViewModels;
 
 namespace Engie.Controllers
 {
@@ -39,7 +40,10 @@ namespace Engie.Controllers
         // GET: Usinas/Create
         public ActionResult Create()
         {
-            return View();
+            Usina usina = new Usina();
+            usina.Ativo = true;
+            ViewBag.Fornecedor = db.Fornecedor;
+            return View(usina);
         }
 
         // POST: Usinas/Create
@@ -55,7 +59,6 @@ namespace Engie.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-
             return View(usina);
         }
 
@@ -71,6 +74,7 @@ namespace Engie.Controllers
             {
                 return HttpNotFound();
             }
+            ViewBag.Fornecedor = db.Fornecedor;
             return View(usina);
         }
 

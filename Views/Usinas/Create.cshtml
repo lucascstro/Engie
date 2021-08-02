@@ -27,7 +27,7 @@
             @Html.LabelFor(model => model.Ativo, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
                 <div class="checkbox">
-                    @Html.EditorFor(model => model.Ativo)
+                    @Html.CheckBoxFor(model => model.Ativo)
                     @Html.ValidationMessageFor(model => model.Ativo, "", new { @class = "text-danger" })
                 </div>
             </div>
@@ -36,7 +36,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.IdFornecedor, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.IdFornecedor, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.DropDownListFor(model => model.IdFornecedor, new SelectList(ViewBag.Fornecedor, "Id", "Nome"), "Selecione")
                 @Html.ValidationMessageFor(model => model.IdFornecedor, "", new { @class = "text-danger" })
             </div>
         </div>
