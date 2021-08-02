@@ -12,7 +12,9 @@ namespace Engie.Models
         [Required]
         public string  Uc { get; set; }
         [Required]
-        public bool  Ativo { get; set; }            
-        public IList<Fornecedor> Fornecedor { get; set; }
+        public bool  Ativo { get; set; }       
+        public  Fornecedor Fornecedor { get; set; }
+        [Required]
+        public int IdFornecedor { get; set; }
     }
 }

@@ -10,8 +10,7 @@ namespace Engie.Models
     {
 
         public int Id { get; set; }
-        [Display(Name = "Fornecedor")]
-        [Required]
+        [Display(Name = "Fornecedor")]      
         public string Nome { get; set; }
     }
 }
