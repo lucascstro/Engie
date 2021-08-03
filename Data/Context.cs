@@ -9,6 +9,7 @@ namespace Engie.Data
 {
     public class Context : DbContext
     {
+        //contexto do bd
         public Context() : base("EngieBD")
         { }
 
@@ -39,7 +40,8 @@ namespace Engie.Data
                 }
             }
             catch (Exception e)
-            {
+            { 
+                //erro ao acessar banco
                 Console.WriteLine("Erro ao inserir os fornecedores! - Erro:" + e.Message.ToString()); ;
             }
         }

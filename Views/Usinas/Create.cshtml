@@ -11,6 +11,7 @@
     @Html.AntiForgeryToken()
 
     <div class="form-horizontal">
+        @*MENSAGENS DE SUCESSO/ERRO*@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         @Html.ValidationMessage("CustomError", new { @class = "text-success" })
         <div class="form-inline form-group ">
@@ -22,6 +23,7 @@
                 </div>
             </div>
         </div>
+        @*FORMULARIO DE CADASTRO*@
         <div class="form-inline form-group">
             @Html.Label("Forrnecedor*", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">

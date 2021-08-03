@@ -6,7 +6,7 @@
 <h5 class="mt-5">Listagem de usinas de Geração Distribuída</h5>
 <hr />
 @using (Html.BeginForm("Index", "Usinas", FormMethod.Get))
-{
+{/*FILTTROS*/
     <div class="row">
         <div class="col-md-6">
             <div class="form-inline">
@@ -28,6 +28,7 @@
         </div>
     </div>
 }
+@*TABELA DE USINAS*@
 <table class="table mt-5">
     <thead>
         <tr>
@@ -47,7 +48,7 @@
     <tbody>
         @foreach (var item in Model)
         {
-            <tr>
+            <tr>@*FOREACH PARA PEGAR VALOR DO NOME PROPRIEDADE DA SUBCLASE NA SUPERCLASE *@
                 @foreach (var itemForncedor in item.Fornecedor)
                 {
                     <td>
